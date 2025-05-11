@@ -2,18 +2,19 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.conf import settings
+from urllib.parse import urljoin
 from .models import User, Team, Activity, Leaderboard, Workout
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    base_url = 'https://stunning-doodle-x5rwx7746r9x2p79x-8000.app.github.dev'
+    base_url = request.build_absolute_uri('/')
     return Response({
-        'users': base_url + settings.API_ENDPOINT_SUFFIX + 'users/',
-        'teams': base_url + settings.API_ENDPOINT_SUFFIX + 'teams/',
-        'activities': base_url + settings.API_ENDPOINT_SUFFIX + 'activities/',
-        'leaderboard': base_url + settings.API_ENDPOINT_SUFFIX + 'leaderboard/',
-        'workouts': base_url + settings.API_ENDPOINT_SUFFIX + 'workouts/',
+        'users': urljoin(base_url, settings.API_ENDPOINT_SUFFIX + 'users/'),
+        'teams': urljoin(base_url, settings.API_ENDPOINT_SUFFIX + 'teams/'),
+        'activities': urljoin(base_url, settings.API_ENDPOINT_SUFFIX + 'activities/'),
+        'leaderboard': urljoin(base_url, settings.API_ENDPOINT_SUFFIX + 'leaderboard/'),
+        'workouts': urljoin(base_url, settings.API_ENDPOINT_SUFFIX + 'workouts/'),
     })
 
 class UserViewSet(viewsets.ModelViewSet):
