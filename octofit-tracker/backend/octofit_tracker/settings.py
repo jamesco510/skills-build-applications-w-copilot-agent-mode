@@ -77,6 +77,15 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Database configuration for MongoDB using djongo
+# ENGINE: Specifies the backend engine to use (djongo for MongoDB)
+# NAME: The name of the MongoDB database
+# HOST: The hostname or IP address of the MongoDB server
+# PORT: The port number on which MongoDB is running
+# USER: The username for authenticating with MongoDB
+# PASSWORD: The password for authenticating with MongoDB
+# AUTH_SOURCE: The database to authenticate against
+# AUTH_MECHANISM: The authentication mechanism to use
 DATABASES = {
     "default": {
         "ENGINE": "djongo",
