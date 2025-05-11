@@ -3,15 +3,16 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.conf import settings
 from urllib.parse import urljoin
+import os
 from .models import User, Team, Activity, Leaderboard, Workout
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 
 @api_view(['GET'])
 def api_root(request, format=None):
     # Explicitly set the Codespace URL or fallback to localhost
-    codespace_url = request.get_host()
-    if 'app.github.dev' in codespace_url:
-        base_url = f"https://{codespace_url}/"
+    codespace_name = 'stunning-doodle-x5rwx7746r9x2p79x'
+    if codespace_name:
+        base_url = f"http://{codespace_name}-8000.app.github.dev/"
     else:
         base_url = "http://localhost:8000/"
 
