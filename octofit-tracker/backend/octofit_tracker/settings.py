@@ -156,3 +156,6 @@ CORS_ALLOW_HEADERS = [
     "authorization",
     "x-csrftoken",
 ]
+
+# API endpoint suffix for the codespace Django REST API
+API_ENDPOINT_SUFFIX = "/api/"
