@@ -81,6 +81,12 @@ DATABASES = {
     "default": {
         "ENGINE": "djongo",
         "NAME": "octofit_db",
+        "HOST": "localhost",
+        "PORT": 27017,
+        "USER": "",
+        "PASSWORD": "",
+        "AUTH_SOURCE": "admin",
+        "AUTH_MECHANISM": "SCRAM-SHA-1",
     }
 }
 
