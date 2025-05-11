@@ -8,14 +8,15 @@ from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, Lea
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    base_url = request.build_absolute_uri('/')
-
-    # Detect Codespace URL dynamically
+    # Explicitly set the Codespace URL or fallback to localhost
     codespace_url = request.get_host()
     if 'app.github.dev' in codespace_url:
         base_url = f"https://{codespace_url}/"
+    else:
+        base_url = "http://localhost:8000/"
 
-    api_suffix = settings.API_ENDPOINT_SUFFIX or '/api/'  # Fallback to default if not set
+    # Ensure API endpoint suffix is used
+    api_suffix = settings.API_ENDPOINT_SUFFIX or '/api/'
     return Response({
         'users': urljoin(base_url, api_suffix + 'users/'),
         'teams': urljoin(base_url, api_suffix + 'teams/'),
